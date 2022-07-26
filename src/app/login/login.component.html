@@ -1,1 +1,61 @@
-<p>login works!</p>
+<div class="login-page">
+  <div class="login-block">
+    <div class="login-block-wrapper">
+      <div class="message-block">
+        <h1>Olá,</h1>
+        <p>Para continuar navegando de forma segura, efetue o login na rede.</p>
+      </div>
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h2>Login</h2>
+        <div class="input-and-icon">
+          <input
+            type="text"
+            id="userName"
+            placeholder="Usuário"
+            formControlName="userName"
+            (change)="anim()"
+            (blur)="isFull = (this.loginForm.value.userName || this.loginForm.value.password)? true : false"
+            (focus)="isFull = true"
+            (focus)="validate()"
+            (blur)="validate()"
+            [@turnYellow] = "isValid? 'enter' : 'leave'"
+          />
+          <img [@turnYellow] = "isValid? 'enter' : 'leave'" [@moveIcon] = "isFull? 'enter' : 'leave'" src="../../assets/svg/user-icon.svg" alt="icone do usuario" />
+        </div>
+        <div class="input-and-icon">
+          <input
+            class="password"
+            id="password"
+            type="password"
+            placeholder="Senha"
+            formControlName="password"
+            (change)="anim()"
+            (blur)="isFull = (this.loginForm.value.userName || this.loginForm.value.password)? true : false"
+            (focus)="isFull = true"
+            (focus)="validate()"
+            (blur)="validate()"
+            [@turnYellow] = "isValid? 'enter' : 'leave'"
+          />
+          <img [@turnYellow] = "isValid? 'enter' : 'leave'"  [@moveIcon] = "isFull? 'enter' : 'leave'" src="../../assets/svg/padlock-icon.svg" alt="icone da senha" />
+        </div>
+        <div
+          class="invalid-credentials-message"
+          *ngIf="((loginForm.get('userName')?.touched || loginForm.get('password')?.touched) && loginForm.get('userName')?.errors?.['required']) || ((loginForm.get('userName')?.touched || loginForm.get('password')?.touched) && loginForm.get('password')?.errors?.['required'])"
+        >
+          <span>Ops, usuário ou senha inválidos, tente novamente</span>
+        </div>
+        <input type="submit" class="submit-button" value="continuar" />
+      </form>
+    </div>
+  </div>
+  <div class="image-block">
+    <div class="image-background">
+      <img class="bg" src="../../assets/img/background-login.png" />
+      <div class="logo-overlay">
+        <div>
+          <img src="../../assets/img/Logo-Compasso-Branco-hor 1.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+@import "../../styles.scss";
+
+.login-page{
+  display: flex;
+  background: linear-gradient(to bottom, #33383D,#1c1d20);
+
+  .login-block{
+    font-family: $main-font;
+    width: 50%;
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+
+    color: #e0e0e0;
+
+    .message-block{
+      h1{
+        font-size: 60px;
+        line-height: 76px;
+        font-weight: 400;
+        margin-top: 135px;
+      }
+      p{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        width: 301px;
+        margin-top: 17px;
+      }
+
+
+    }
+    .login-form{
+
+      margin-top: 135px;
+
+      h2{
+        font-size: 30px;
+        line-height: 38px;
+
+      }
+      .input-and-icon{
+        position: relative;
+        margin-top: 32px;
+        input{
+          padding: 20px;
+          background-color: #26292c;
+          border: 1px solid #FFFFFF;
+          border-radius: 50px;
+          font: 16px;
+          color: #e0e0e0;
+          font-family: $main-font;
+          width: 337px; //not sure what is going on here, but 379 px wouldn't wouldn't work
+        }
+        img{
+          position: absolute;
+          margin: 18px
+        }
+        .password:not(:placeholder-shown){
+          letter-spacing: 10px;
+
+        }
+      }
+      .invalid-credentials-message{
+        width: 283px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #e9b425;
+        text-align: center;
+        line-height: 20px;
+        border-top: 28px;
+        margin-left: 46px;
+        margin-top: 28px;
+        position: absolute;
+
+      }
+      .submit-button{
+        margin-top: 115px;
+        padding: 20px;
+        background: linear-gradient(to right, #FF2D04,#C13216);
+        box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
+        border: none;
+        border-radius: 50px;
+        font-weight: 700;
+        text-align: center;
+        color: #e0e0e0;
+        font-family: $main-font;
+        width: 379px;
+        filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));
+      }
+
+    }
+  }
+  .image-block{
+    width: 50%;
+    .image-background{
+      position: relative;
+      .bg{
+        height: 1140px;
+        width: 100%;
+        object-fit: cover;
+      }
+      .logo-overlay{
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 35px;
+        div{
+          display: flex;
+          justify-content: center;
+          img{
+            width: 306px;
+
+          }
+        }
+      }
+    }
+  }
+}
+@media(max-width: 1366px){
+  .message-block {
+    h1{
+      margin-top: 30px!important;
+    }
+  }
+  .login-form{
+    margin-top: 30px!important;
+  }
+}
+
+
+

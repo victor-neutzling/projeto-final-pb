@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~reset.css';
+
+@font-face {
+  font-family: 'Mark Pro';
+  src: url("./assets/fonts/Mark\ Pro.ttf") format("truetype");
+
+}
+$main-font: 'Mark Pro', sans-serif;
