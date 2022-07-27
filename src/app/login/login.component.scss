@@ -14,6 +14,9 @@
     color: #e0e0e0;
 
     .message-block{
+      img{
+        display: none;
+      }
       h1{
         font-size: 60px;
         line-height: 76px;
@@ -129,6 +132,105 @@
     margin-top: 30px!important;
   }
 }
+@media(max-width: 960px){
+  .message-block{
+    .img-wrapper-logo{
+      display: flex;
+      justify-content: center;
+    }
+    img{
+      display: block!important;
+      width: 75%;
+    }
+    p{
+      width: 100%!important;
+    }
+  }
+  .login-page{
+    box-sizing: border-box;
+  }
+
+  input{
+
+    width: 100%!important;
+    //margin-right: px!important;
+  }
+  .submit-button{
+    margin-top: 36px!important;
+  }
+
+  .input-and-icon{
+    position:inherit!important;
+    width: 100%!important;
+    box-sizing: border-box!important;
+    padding-right: 40px;
+    img{
+      display: none;
+    }
+    input{
+      width: 100%!important;
+    }
+
+    .label1 {
+      position: relative;
+    }
+
+    .label1:before {
+      content: "";
+      position: absolute;
+      right: 20px;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      background: url("../../assets/svg/user-icon.svg") center / contain no-repeat;
+    }
+    .label2 {
+      position: relative;
+    }
+
+    .label2:before {
+      content: "";
+      position: absolute;
+      right: 20px;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      background: url("../../assets/svg/padlock-icon.svg") center / contain no-repeat;
+    }
+
+  }
+  .login-block{
+    min-height: 100vh;
+    display: flex;
+    width: 100%!important;
+    box-sizing: border-box;
+    padding: 30px;
+    .login-block-wrapper{
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .image-block{
+    display: none;
+  }
+  .invalid-credentials-message{
+    width: 100%!important;
+    font-size: 16px;
+    font-weight: 700;
+    color: #e9b425;
+    text-align: center;
+    line-height: 20px;
+    border-top: 28px;
+    margin-left:0px!important;
+    margin-top: 28px;
+    position: relative!important;
+    margin-bottom: -15px;
+
+  }
+}
+
 
 
 

@@ -9,13 +9,13 @@ export const moveIcon = trigger(
     transition(
       'leave => enter',
       [
-        animate('0s')
+        animate('0.2s ease-in-out')
       ]
     ),
     transition(
       'enter => leave',
       [
-        animate('0s')
+        animate('0.2s ease-in-out')
       ]
     )
   ]

@@ -31,17 +31,31 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.intervalId = setInterval(() => {
-      this.time = (new Date()).getHours() + ":" +(new Date()).getMinutes();
+      let hours = (new Date()).getHours().toString()
+      let mins = (new Date()).getMinutes().toString()
+      if(hours.length == 1){
+        hours = `0${hours}`
+      }
+      if(mins.length == 1){
+        mins = `0${mins}`
+      }
+      this.time = `${hours}:${mins}`
+
     }, 1000);
 
     this.locationService.getCurrentLocation().then((res:any)=>{
       this.locationService.callApi(res.coords.latitude,res.coords.longitude).subscribe((res:any)=>{
 
-        this.locale = res[0].region + ' - ' + res[0].region_code
+        this.locale = res[0].county + ' - ' + res[0].region_code
 
         this.getWeather(res[0].latitude,res[0].longitude);
       })
     })
+    if(this.locale == 'Carregando...'){
+      console.log('here')
+      this.locale = 'São Paulo - SP'
+      this.getWeather('-23.5489','-46.6388')
+    }
     this.startTimer()
   }
 

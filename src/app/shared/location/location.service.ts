@@ -13,7 +13,9 @@ export class LocationService {
 
   public getCurrentLocation(){
     return new Promise((res:any,rej:any)=>{
-      navigator.geolocation.getCurrentPosition(res,rej)
+
+        navigator.geolocation.getCurrentPosition(res,rej)
+
     })
 
   }

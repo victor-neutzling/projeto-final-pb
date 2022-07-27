@@ -2,13 +2,17 @@
   <div class="login-block">
     <div class="login-block-wrapper">
       <div class="message-block">
+        <div class="img-wrapper-logo">
+          <img src="../../assets/img/Logo-Compasso-Branco-hor 1.png" />
+        </div>
         <h1>Olá,</h1>
         <p>Para continuar navegando de forma segura, efetue o login na rede.</p>
       </div>
       <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <h2>Login</h2>
         <div class="input-and-icon">
-          <input
+          <label class="label1">
+            <input
             type="text"
             id="userName"
             placeholder="Usuário"
@@ -19,11 +23,13 @@
             (focus)="validate()"
             (blur)="validate()"
             [@turnYellow] = "isValid? 'enter' : 'leave'"
-          />
+            />
+          </label>
           <img [@turnYellow] = "isValid? 'enter' : 'leave'" [@moveIcon] = "isFull? 'enter' : 'leave'" src="../../assets/svg/user-icon.svg" alt="icone do usuario" />
         </div>
         <div class="input-and-icon">
-          <input
+          <label class="label2">
+            <input
             class="password"
             id="password"
             type="password"
@@ -36,6 +42,7 @@
             (blur)="validate()"
             [@turnYellow] = "isValid? 'enter' : 'leave'"
           />
+          </label>
           <img [@turnYellow] = "isValid? 'enter' : 'leave'"  [@moveIcon] = "isFull? 'enter' : 'leave'" src="../../assets/svg/padlock-icon.svg" alt="icone da senha" />
         </div>
         <div
