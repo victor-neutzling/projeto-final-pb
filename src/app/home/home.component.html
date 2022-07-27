@@ -1,0 +1,55 @@
+<div class="home-wrapper">
+  <div class="header">
+    <div class="logo-compass">
+      <img src="../../assets/img/LogoCompasso 1.png" alt="">
+    </div>
+    <div class="date-and-time">
+      <h1>{{time}}</h1>
+      <h3>{{date}}</h3>
+    </div>
+    <div class="weather-forecast">
+      <div class="locale">
+        <h3>{{locale}}</h3>
+      </div>
+      <div class="forecast">
+        <img src="../../assets/svg/006-cloudy-1 1.svg" alt="">
+        <h2>{{temperature}}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="logo-ball">
+      <img src="../../assets/img/bola-LogoCompasso 1.png" alt="">
+    </div>
+    <div class="text">
+      <h3>Our mission is</h3>
+      <h4>Nossa missão é</h4>
+      <h2>to transform the world</h2>
+      <h4>transformar o mundo</h4>
+      <h2>building digital experiences</h2>
+      <h4>construindo experiências digitais</h4>
+      <h2>that enable our client's growth</h2>
+      <h4>que permitam o crescimento dos nossos clientes</h4>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-left">
+      <p>Essa janela do navegador é usada para manter sua sessão de autenticação ativa. Deixe-a aberta em segundo plano e abra uma nova janela para continuar a navegar.</p>
+    </div>
+    <img src="../../assets/svg/Line 4.svg" alt="">
+    <div class="footer-right">
+      <div class="timer-wrapper">
+        <h2>Application refresh in</h2>
+        <div class="timer">
+          <h1>{{timer}}</h1>
+          <h3>seconds</h3>
+        </div>
+      </div>
+      <div class="btn-wrapper">
+        <button class="keep-browsing-btn" (click)="gotoGoogle()">Continuar navegando</button>
+      <button class="logout-btn" (click)="logout()">logout</button>
+      </div>
+    </div>
+  </div>
+
+</div>

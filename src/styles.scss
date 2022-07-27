@@ -5,4 +5,11 @@
   src: url("./assets/fonts/Mark\ Pro.ttf") format("truetype");
 
 }
+@font-face {
+  font-family: 'Mark Pro Bold';
+  src: url("./assets/fonts/Mark-Pro-Bold.ttf") format("truetype");
+
+}
 $main-font: 'Mark Pro', sans-serif;
+$main-font-bold: 'Mark Pro Bold', sans-serif;
+

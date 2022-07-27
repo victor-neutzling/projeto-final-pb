@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {
   FormBuilder,
@@ -23,10 +24,11 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router:Router, private route:ActivatedRoute ) {}
 
   onSubmit() {
-    console.log(this.loginForm.value.userName, this.loginForm.value.password);
+    if(this.loginForm.valid)
+    this.router.navigate(['home'])
   }
 
   ngOnInit(): void {}
