@@ -2,18 +2,22 @@
 .home-wrapper{
 
   background: linear-gradient(105.96deg, #FFFFFF 0%, #F0F0F0 97.86%);
-  padding-top: 25px;
+  //padding-top: 25px;
   display: flex;
   flex-direction: column;
-  min-height: 90vh;
+  min-height: 100vh;
+  max-height: 100vh!important;
   justify-content: space-between;
+  overflow-y: hidden;
 
 
 }
 .header{
+
   display: flex;
   justify-content: space-between;
   margin: 0 40px 0px 40px;
+  margin-top: 25px;
   font-family: $main-font!important;
   color: #222222!important;
   .logo-compass{
@@ -52,19 +56,18 @@
   justify-content: space-between;
   .logo-ball{
     width: 35%;
+    position: relative;
+    //bottom: 0px;
     img{
-      //display: none;
-      //position: absolute;
+      position: absolute;
       width: 100%;
-      // margin-bottom: 25px;
-      //object-fit: cover;
-      // object-position: 40% 30%; /* try 20px 10px */
-      //width: 100%; /* width of container */
-      //height: 100%; /* height of container */
-      margin-bottom: -81px;
+
+      bottom: -281px;
+
       z-index: 0;
+      //overflow-y: hidden;
     }
-    overflow: hidden;
+    //overflow-y: hidden;
   }
   .text{
     text-align: right;
@@ -96,6 +99,7 @@
   justify-content: center;
   z-index: 1;
   color: #F0F0F0;
+  bottom: 0px;
 
 
   width: 100%;
@@ -128,7 +132,7 @@
     width: 50%;
     justify-content: space-between;
     .timer-wrapper{
-      margin-left: 103px;
+      margin-left: 0;
       display: flex;
       h2{
         font-family: $main-font;
@@ -204,6 +208,96 @@
       font-size: 48px!important;
       line-height: 45px!important;
 
+    }
+  }
+}
+// @media(max-width: 1148px){//prevents white space under page when ball starts floating
+//   .logo-ball{
+//     margin-bottom: -100px!important;
+//   }
+// }
+// @media(max-width: 1004px){//prevents white space under page when ball starts floating
+//   .logo-ball{
+//     margin-bottom: -80px!important;
+//   }
+// }
+@media (max-width: 960px){
+  .home-wrapper{
+    padding-top: 0px!important;
+    min-height: 100vh!important;
+  }
+  .header{
+    margin: 24px!important;
+    .logo-compass{
+      img{
+        width: 100px!important;
+      }
+    }
+  }
+  .main{
+    justify-content: flex-end!important;
+  }
+  .text{
+    margin-top: 0px!important;
+    margin-right: 24px!important;
+    margin-left: 24px!important;
+    h3{
+
+      font-size: 14px!important;
+    }
+    h4{
+      font-size: 16px!important;
+    }
+    h2{
+      font-size: 24px!important;
+      line-height: 30px!important;
+
+    }
+  }
+  .date-and-time{
+    display: none;
+  }
+  .logo-ball{
+    display: none;
+  }
+  .footer{
+    bottom: 0;
+    flex-direction: column;
+    align-items: center;
+    height: 100%!important;
+    img{
+      display: none;
+    }
+    .footer-left{
+      width: 80%!important;
+      p{
+        text-align: center!important;
+        //margin-bottom: 24px!important;
+      }
+    }
+    .footer-right{
+      width: 100%!important;
+      flex-direction: column;
+      align-items: center;
+      .timer-wrapper{
+        text-align: center!important;
+        justify-content: center!important;
+        h2{
+          width: 50%!important;
+        }
+        .timer{
+          width: 50%!important;
+        }
+      }
+      .btn-wrapper{
+        width: 100%!important;
+        margin-top: 24px;
+        //justify-content: space-evenly!important;
+        box-sizing: border-box;
+        button{
+          width: 50%!important;
+        }
+      }
     }
   }
 }

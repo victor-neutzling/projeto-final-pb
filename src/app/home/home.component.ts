@@ -21,15 +21,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   intervalId2:any;
 
   localeArray:Array<string> = []
-  time:any = '...' //temp
+  time:any = '...'
   date = `${this.dayEnum[this.rxTime.getDay()]}, ${this.rxTime.getDate()} de ${this.monthEnum[this.rxTime.getMonth()]} de ${this.rxTime.getFullYear()}`
   locale = 'Carregando...'
-  temperature = '...'//temp
-  timer = 60 //temp
+  temperature = '...'
+  internalTimer = 60 //in case someone inspects element and changes the timer, it would only affect the value and not change the time you can spend on the page
+  timer = 60
 
   constructor(private router:Router,private locationService:LocationService,private weatherService:WeatherService) { }
 
   ngOnInit() {
+
     this.intervalId = setInterval(() => {
       let hours = (new Date()).getHours().toString()
       let mins = (new Date()).getMinutes().toString()
@@ -38,6 +40,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
       if(mins.length == 1){
         mins = `0${mins}`
+      }
+      if(this.locale == 'undefined - undefined'){
+        this.locale = 'São Paulo - SP'
       }
       this.time = `${hours}:${mins}`
 
@@ -50,12 +55,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         this.getWeather(res[0].latitude,res[0].longitude);
       })
-    })
-    if(this.locale == 'Carregando...'){
-      console.log('here')
+    }).catch((err:any) =>{
       this.locale = 'São Paulo - SP'
-      this.getWeather('-23.5489','-46.6388')
-    }
+      this.getWeather('-23.5489','-46.6388');
+    })
+
     this.startTimer()
   }
 
@@ -65,10 +69,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   startTimer(){
     this.intervalId = setInterval(() => {
-      this.timer--
+      this.internalTimer--
+      this.timer = this.internalTimer
 
-      if(this.timer == 0)
+      if(this.internalTimer == 0)
       this.router.navigate(['login'])
+
     }, 1000);
 
   }
