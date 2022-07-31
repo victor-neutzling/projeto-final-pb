@@ -38,8 +38,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.registerForm.valid)
-    console.log('registrado')
+    if(this.registerForm.get('password')?.value == this.registerForm.get('confirmPassword')?.value){
+      if(this.registerForm.valid){
+        console.log('registrado') //replace for firebase submit later
+      }
+    }
   }
   anim() {
     if ((this.registerForm.value.userName || this.registerForm.value.password || this.registerForm.value.confirmPassword)) {
