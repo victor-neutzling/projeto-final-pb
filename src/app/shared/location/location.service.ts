@@ -13,14 +13,12 @@ export class LocationService {
 
   public getCurrentLocation(){
     return new Promise((res:any,rej:any)=>{
-
         navigator.geolocation.getCurrentPosition(res,rej)
-
     })
 
   }
   public callApi(lat:any,lng:any){
     return this.http.get(`http://api.positionstack.com/v1/reverse?access_key=${this.apikey}&query=${lat},${lng}`)
-      .pipe(map((data: any) => data.data));
+    .pipe(map((data: any) => data.data));
   }
 }

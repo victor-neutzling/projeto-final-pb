@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, 1000);
 
     this.locationService.getCurrentLocation().then((res:any)=>{
+      console.log(res)
       this.locationService.callApi(res.coords.latitude,res.coords.longitude).subscribe((res:any)=>{
 
         this.locale = res[0].county + ' - ' + res[0].region_code

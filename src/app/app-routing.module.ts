@@ -1,3 +1,4 @@
+import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -6,7 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
-  {path:'home',component:HomeComponent}
+  {path:'home',component:HomeComponent},
+  {path:'register',component:RegisterComponent}
 
 ];
 

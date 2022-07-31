@@ -5,11 +5,9 @@
         <div class="img-wrapper-logo">
           <img src="../../assets/img/Logo-Compasso-Branco-hor 1.png" />
         </div>
-        <h1>Olá,</h1>
-        <p>Para continuar navegando de forma segura, efetue o login na rede.</p>
       </div>
-      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <h2>Login</h2>
+      <form class="login-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h2>Registrar</h2>
         <div class="input-and-icon">
           <label class="label1">
             <input
@@ -18,10 +16,10 @@
             placeholder="Usuário"
             formControlName="userName"
             (change)="anim()"
-            (blur)="isFull = (this.loginForm.value.userName || this.loginForm.value.password)? true : false"
+            (blur)="isFull = (this.registerForm.value.userName || this.registerForm.value.password|| this.registerForm.value.confirmPassword)? true : false"
             (focus)="isFull = true"
-            (focus)="validate()"
-            (blur)="validate()"
+            (focus)="validate(); updateErrorMessage();"
+            (blur)="validate(); updateErrorMessage();"
             [@turnYellow] = "isValid? 'enter' : 'leave'"
             />
           </label>
@@ -36,10 +34,28 @@
             placeholder="Senha"
             formControlName="password"
             (change)="anim()"
-            (blur)="isFull = (this.loginForm.value.userName || this.loginForm.value.password)? true : false"
+            (blur)="isFull = (this.registerForm.value.userName || this.registerForm.value.password|| this.registerForm.value.confirmPassword)? true : false"
             (focus)="isFull = true"
-            (focus)="validate()"
-            (blur)="validate()"
+            (focus)="validate(); updateErrorMessage();"
+            (blur)="validate(); updateErrorMessage();"
+            [@turnYellow] = "isValid? 'enter' : 'leave'"
+          />
+          </label>
+          <img [@turnYellow] = "isValid? 'enter' : 'leave'"  [@moveIcon] = "isFull? 'enter' : 'leave'" src="../../assets/svg/padlock-icon.svg" alt="icone da senha" />
+        </div>
+        <div class="input-and-icon">
+          <label class="label2">
+            <input
+            class="password"
+            id="password"
+            type="password"
+            placeholder="Confirmar senha"
+            formControlName="confirmPassword"
+            (change)="anim()"
+            (blur)="isFull = (this.registerForm.value.userName || this.registerForm.value.password || this.registerForm.value.confirmPassword)? true : false"
+            (focus)="isFull = true"
+            (focus)="validate(); updateErrorMessage();"
+            (blur)="validate(); updateErrorMessage();"
             [@turnYellow] = "isValid? 'enter' : 'leave'"
           />
           </label>
@@ -47,13 +63,13 @@
         </div>
         <div
           class="invalid-credentials-message"
-          *ngIf="((loginForm.get('userName')?.touched || loginForm.get('password')?.touched) && loginForm.get('userName')?.errors?.['required']) || ((loginForm.get('userName')?.touched || loginForm.get('password')?.touched) && loginForm.get('password')?.errors?.['required'])"
+
         >
-          <span>Ops, usuário ou senha inválidos, tente novamente</span>
+          <span>{{errMessage}}</span>
         </div>
         <input type="submit" class="submit-button" value="continuar" />
         <div class="register">
-          <p>Não possui uma conta?</p><a [routerLink]="['../register']">Cadastre-se</a>
+          <p>Já possui uma conta?</p> <a [routerLink]="['../login']">Fazer login</a>
         </div>
       </form>
     </div>

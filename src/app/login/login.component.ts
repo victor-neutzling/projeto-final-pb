@@ -1,9 +1,7 @@
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router, } from '@angular/router';
+import { Component, OnInit, } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
-  FormGroup,
   Validators,
 } from '@angular/forms';
 import { moveIcon } from './animations/move-icons';
@@ -43,12 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   validate(){
-    if((((this.loginForm.get('userName')?.touched || this.loginForm.get('password')?.touched) && this.loginForm.get('userName')?.errors?.['required']) || ((this.loginForm.get('userName')?.touched || this.loginForm.get('password')?.touched) && this.loginForm.get('password')?.errors?.['required'])) || (this.loginForm.get('userName')?.touched || this.loginForm.get('password')?.touched) && ((!this.loginForm.value.userName || !this.loginForm.value.password))){
-      this.isValid = false
+    if(this.loginForm.touched)
+    this.isValid = this.loginForm.valid
 
-    }else{
-      this.isValid = true;
-
-    }
   }
 }

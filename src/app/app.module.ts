@@ -1,3 +1,4 @@
+import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +22,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     FormsModule,
     LoginModule,
     HomeModule,
+    RegisterModule,
     BrowserAnimationsModule,
     HttpClientModule,
     GoogleMapsModule
