@@ -18,12 +18,23 @@
             (change)="anim()"
             (blur)="isFull = (this.registerForm.value.userName || this.registerForm.value.password|| this.registerForm.value.confirmPassword)? true : false"
             (focus)="isFull = true"
-            (focus)="validate(); updateErrorMessage();"
-            (blur)="validate(); updateErrorMessage();"
+            (focus)="validate();"
+            (blur)="validate();"
+            (input)="logErrors()"
             [@turnYellow] = "isValid? 'enter' : 'leave'"
             />
           </label>
           <img [@turnYellow] = "isValid? 'enter' : 'leave'" [@moveIcon] = "isFull? 'enter' : 'leave'" src="../../assets/svg/user-icon.svg" alt="icone do usuario" />
+        </div>
+        <div class="password-validation"
+          *ngIf="registerForm.get('userName')?.errors?.['email'] && registerForm.get('userName')?.touched"
+         >
+          <h4>Insira um endereço de email válido</h4>
+        </div>
+        <div class="password-validation"
+          *ngIf="registerForm.get('userName')?.errors?.['required'] && registerForm.get('userName')?.touched"
+         >
+          <h4>Este campo é obrigatório</h4>
         </div>
         <div class="input-and-icon">
           <label class="label2">
@@ -36,12 +47,69 @@
             (change)="anim()"
             (blur)="isFull = (this.registerForm.value.userName || this.registerForm.value.password|| this.registerForm.value.confirmPassword)? true : false"
             (focus)="isFull = true"
-            (focus)="validate(); updateErrorMessage();"
-            (blur)="validate(); updateErrorMessage();"
+            (focus)="validate();"
+            (blur)="validate();"
+            (input)="logErrors()"
             [@turnYellow] = "isValid? 'enter' : 'leave'"
           />
           </label>
           <img [@turnYellow] = "isValid? 'enter' : 'leave'"  [@moveIcon] = "isFull? 'enter' : 'leave'" src="../../assets/svg/padlock-icon.svg" alt="icone da senha" />
+        </div>
+        <div class="password-validation"
+          *ngIf="!(registerForm.get('password')?.valid) && registerForm.get('password')?.touched"
+        >
+          <h4>Sua senha deverá conter:</h4>
+          <div
+          [@turnTextGreen] = "(isLongEnough && registerForm.get('password')?.value?.length)? 'enter' : 'leave'"
+          >
+          <mat-icon class="icon-clear"
+            *ngIf="registerForm.get('password')?.errors?.['minlength'] || !registerForm.get('password')?.value?.length"
+          >clear</mat-icon>
+          <mat-icon class="icon-check"
+          *ngIf="!registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.value?.length"
+          >check</mat-icon>
+          <h4>Ao menos 6 Caracteres</h4></div>
+          <div
+          [@turnTextGreen] = "hasUpper ? 'enter' : 'leave'"
+          >
+            <mat-icon class="icon-clear"
+            *ngIf="registerForm.get('password')?.errors?.['hasUpperCase']"
+            >clear</mat-icon>
+            <mat-icon class="icon-check"
+            *ngIf="!registerForm.get('password')?.errors?.['hasUpperCase']"
+            >check</mat-icon>
+            <h4>Uma letra maiúscula</h4>
+          </div>
+          <div
+          [@turnTextGreen] = "hasLower? 'enter' : 'leave'"
+          >
+          <mat-icon class="icon-clear"
+          *ngIf="registerForm.get('password')?.errors?.['hasLowerCase']"
+          >clear</mat-icon>
+          <mat-icon class="icon-check"
+          *ngIf="!registerForm.get('password')?.errors?.['hasLowerCase']"
+          >check</mat-icon>
+          <h4>Uma letra minúscula</h4></div>
+          <div
+          [@turnTextGreen] = "hasNumber? 'enter' : 'leave'"
+          >
+          <mat-icon class="icon-clear"
+          *ngIf="registerForm.get('password')?.errors?.['hasNumber']"
+          >clear</mat-icon>
+          <mat-icon class="icon-check"
+          *ngIf="!registerForm.get('password')?.errors?.['hasNumber']"
+          >check</mat-icon>
+          <h4>Um número</h4></div>
+          <div
+          [@turnTextGreen] = "hasSpecial? 'enter' : 'leave'"
+          >
+          <mat-icon class="icon-clear"
+          *ngIf="registerForm.get('password')?.errors?.['hasSpecialCharacters']"
+          >clear</mat-icon>
+          <mat-icon class="icon-check"
+          *ngIf="!registerForm.get('password')?.errors?.['hasSpecialCharacters']"
+          >check</mat-icon>
+          <h4>Um caractere especial</h4></div>
         </div>
         <div class="input-and-icon">
           <label class="label2">
@@ -54,19 +122,20 @@
             (change)="anim()"
             (blur)="isFull = (this.registerForm.value.userName || this.registerForm.value.password || this.registerForm.value.confirmPassword)? true : false"
             (focus)="isFull = true"
-            (focus)="validate(); updateErrorMessage();"
-            (blur)="validate(); updateErrorMessage();"
+            (focus)="validate();"
+            (blur)="validate();"
+            (input)="logErrors()"
             [@turnYellow] = "isValid? 'enter' : 'leave'"
           />
           </label>
           <img [@turnYellow] = "isValid? 'enter' : 'leave'"  [@moveIcon] = "isFull? 'enter' : 'leave'" src="../../assets/svg/padlock-icon.svg" alt="icone da senha" />
         </div>
-        <div
-          class="invalid-credentials-message"
-
-        >
-          <span>{{errMessage}}</span>
+        <div class="password-validation"
+          *ngIf="registerForm.get('password')?.value != registerForm.get('confirmPassword')?.value && registerForm.get('confirmPassword')?.touched"
+         >
+          <h4>As senhas não coincidem</h4>
         </div>
+
         <input type="submit" class="submit-button" value="continuar" />
         <div class="register">
           <p>Já possui uma conta?</p> <a [routerLink]="['../login']">Fazer login</a>

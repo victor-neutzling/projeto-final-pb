@@ -1,19 +1,31 @@
+import { turnTextGreen } from './../login/animations/turn-text-green';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { turnYellow } from '../login/animations/turn-yellow';
 import { turnGreen } from '../login/animations/turn-green';
 import { moveIcon } from '../login/animations/move-icons';
+import { hasLowerCase, hasNumber, hasSpecialCharacters, hasUpperCase } from '../shared/validators/regex-validators';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  animations: [moveIcon, turnYellow, turnGreen],
+  animations: [moveIcon, turnYellow, turnGreen, turnTextGreen],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnChanges {
   public isFull:boolean = false
   public isValid:boolean = true
   public errMessage:string = ''
+
+  hasUpper = false
+  hasLower = false
+  hasNumber = false
+  hasSpecial = false
+  isLongEnough = false
+
+  @Input() userName: string = '';
+  @Input() password: string = '';
+  @Input() confirmPassword: string = '';
 
   public registerForm = this.fb.group({
     userName: ['',
@@ -26,7 +38,10 @@ export class RegisterComponent implements OnInit {
       Validators.compose([
         Validators.required,
         Validators.minLength(6),
-        Validators.pattern(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?\W).*$/)
+        hasLowerCase,
+        hasUpperCase,
+        hasNumber,
+        hasSpecialCharacters
       ])
     ],
     confirmPassword: ['', Validators.required]
@@ -37,7 +52,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnChanges(changes: SimpleChanges){
+    console.log(changes['password'].currentValue)
+  }
+
   onSubmit(){
+    
     if(this.registerForm.get('password')?.value == this.registerForm.get('confirmPassword')?.value){
       if(this.registerForm.valid){
         console.log('registrado') //replace for firebase submit later
@@ -59,32 +79,11 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
-  updateErrorMessage(){//the last if statement will update the messge, sorted by order of importance
-    if(this.registerForm.touched){
-      let tempErrMessage = ''
-
-      if(this.registerForm.valid){
-        tempErrMessage = ''
-      }
-      if(this.registerForm.get('password')?.value != this.registerForm.get('confirmPassword')?.value){
-        tempErrMessage = 'As senhas inseridas são diferentes'
-        console.log(1)
-      }
-      if(this.registerForm.get('password')?.errors?.['pattern']){
-        tempErrMessage = 'Sua senha deve conter no minimo 6 caracteres, uma letra maiúscula e uma minúscula, um numero e um caractere especial.'
-      }
-      if(this.registerForm.get('password')?.errors?.['minlength']){
-        tempErrMessage = 'Sua senha deve conter no minimo 6 caracteres, uma letra maiúscula e uma minúscula, um numero e um caractere especial.'
-      }
-
-      if(this.registerForm.get('userName')?.errors?.['email']){
-        tempErrMessage = 'O email inserido é inválido'
-      }
-      if(this.registerForm.get('userName')?.errors?.['required']||this.registerForm.get('password')?.errors?.['required']){
-        tempErrMessage = 'Todos os campos são obrigatórios'
-        console.log(4)
-      }
-      this.errMessage = tempErrMessage
-    }
+  logErrors(){
+    this.hasUpper = this.registerForm.get('password')?.errors?.['hasUpperCase']? false : true
+    this.hasLower = this.registerForm.get('password')?.errors?.['hasLowerCase']? false : true
+    this.hasNumber = this.registerForm.get('password')?.errors?.['hasNumber']? false : true
+    this.hasSpecial = this.registerForm.get('password')?.errors?.['hasSpecialCharacters']? false : true
+    this.isLongEnough = this.registerForm.get('password')?.errors?.['minlength']? false : true
   }
 }

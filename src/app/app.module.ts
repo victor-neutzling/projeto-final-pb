@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './home/home.module';
 import { HttpClientModule } from '@angular/common/http'
 import { GoogleMapsModule } from '@angular/google-maps';
+import { MatIconModule } from '@angular/material/icon'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -25,7 +27,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     RegisterModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

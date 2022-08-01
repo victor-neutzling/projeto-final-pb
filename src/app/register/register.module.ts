@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -14,7 +15,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    MatIconModule
   ],
   exports:[RegisterComponent]
 })
