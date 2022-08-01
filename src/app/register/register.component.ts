@@ -1,3 +1,5 @@
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from './../shared/services/auth/auth.service';
 import { turnTextGreen } from './../login/animations/turn-text-green';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
@@ -12,7 +14,7 @@ import { hasLowerCase, hasNumber, hasSpecialCharacters, hasUpperCase } from '../
   styleUrls: ['./register.component.scss'],
   animations: [moveIcon, turnYellow, turnGreen, turnTextGreen],
 })
-export class RegisterComponent implements OnInit, OnChanges {
+export class RegisterComponent implements OnInit {
   public isFull:boolean = false
   public isValid:boolean = true
   public errMessage:string = ''
@@ -47,20 +49,18 @@ export class RegisterComponent implements OnInit, OnChanges {
     confirmPassword: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private router:Router, private authService:AuthService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
-  ngOnChanges(changes: SimpleChanges){
-    console.log(changes['password'].currentValue)
-  }
 
   onSubmit(){
-    
+
     if(this.registerForm.get('password')?.value == this.registerForm.get('confirmPassword')?.value){
       if(this.registerForm.valid){
-        console.log('registrado') //replace for firebase submit later
+        this.authService.SignUp(this.registerForm.get('userName')?.value as string, this.registerForm.get('password')?.value as string)
+        this.router.navigate(['home'])
       }
     }
   }

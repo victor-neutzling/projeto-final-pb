@@ -1,3 +1,4 @@
+import { AuthService } from './../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { LocationService } from './../shared/location/location.service';
 import { WeatherService } from './../shared/weather/weather.service';
@@ -28,10 +29,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   internalTimer = 60 //in case someone inspects element and changes the timer, it would only affect the value and not change the time you can spend on the page
   timer = 60
 
-  constructor(private router:Router,private locationService:LocationService,private weatherService:WeatherService) { }
+  constructor(private authService:AuthService, private router:Router,private locationService:LocationService,private weatherService:WeatherService) { }
 
   ngOnInit() {
-
+    console.log(JSON.parse(localStorage.getItem('user') as string))
     this.intervalId = setInterval(() => {
       let hours = (new Date()).getHours().toString()
       let mins = (new Date()).getMinutes().toString()
@@ -74,7 +75,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.timer = this.internalTimer
 
       if(this.internalTimer == 0)
-      this.router.navigate(['login'])
+      this.authService.SignOut()
 
     }, 1000);
 
@@ -86,7 +87,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
   }
   logout(){
-    this.router.navigate(['login'])
+    this.authService.SignOut()
   }
   gotoGoogle(){
     window.location.href = 'https://www.google.com/'

@@ -1,3 +1,4 @@
+import { AuthService } from './../shared/services/auth/auth.service';
 import { ActivatedRoute, Router, } from '@angular/router';
 import { Component, OnInit, } from '@angular/core';
 import {
@@ -22,14 +23,17 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private router:Router, private route:ActivatedRoute ) {}
+  constructor(private authService:AuthService, private fb: FormBuilder, private router:Router, private route:ActivatedRoute ) {}
 
   onSubmit() {
     if(this.loginForm.valid)
-    this.router.navigate(['home'])
+    this.authService.SignIn(this.loginForm.get('userName')?.value as string, this.loginForm.get('password')?.value as string)
+    //this.router.navigate(['home'])
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(JSON.parse(localStorage.getItem('user') as string))
+  }
 
   anim() {
 
