@@ -239,6 +239,15 @@
 
   }
 }
+@media(max-width: 342px){
+  .register{
+    flex-direction: column;
+    align-items: center;
+    p{
+      margin-bottom: 6px;
+    }
+  }
+}
 
 
 

@@ -119,13 +119,16 @@
   }
   .image-block{
     width: 50%;
+    box-sizing: border-box;
     .image-background{
       position: relative;
+      height: 100%;
       .bg{
-        height: 100vh;
+        //box-sizing: border-box;
+        height: 100%;
         width: 100%;
         object-fit: cover;
-        height: auto;
+        //height: auto;
       }
       .logo-overlay{
         width: 100%;
@@ -255,6 +258,14 @@
   }
 }
 
-
+@media(max-width: 342px){
+  .register{
+    flex-direction: column;
+    align-items: center;
+    p{
+      margin-bottom: 6px;
+    }
+  }
+}
 
 

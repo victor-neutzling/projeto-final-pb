@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.get('password')?.value == this.registerForm.get('confirmPassword')?.value){
       if(this.registerForm.valid){
         this.authService.SignUp(this.registerForm.get('userName')?.value as string, this.registerForm.get('password')?.value as string)
-        this.router.navigate(['home'])
+
       }
     }
   }
