@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private authService:AuthService, private router:Router,private locationService:LocationService,private weatherService:WeatherService) { }
 
   ngOnInit() {
-    console.log(JSON.parse(localStorage.getItem('user') as string))
+    //console.log(JSON.parse(localStorage.getItem('user') as string))
     this.intervalId = setInterval(() => {
       let hours = (new Date()).getHours().toString()
       let mins = (new Date()).getMinutes().toString()
@@ -62,23 +62,26 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getWeather('-23.5489','-46.6388');
     })
 
-    this.startTimer()
+    this.startTimer(60)
   }
 
   ngOnDestroy(): void {
     clearInterval(this.intervalId);
     clearInterval(this.intervalId2);
   }
-  startTimer(){
+  startTimer(time:number){
+    this.internalTimer = time;
     this.intervalId = setInterval(() => {
+      this.logOut()
+      if(this.internalTimer == 0)
+
       this.internalTimer--
       this.timer = this.internalTimer
-
-      if(this.internalTimer == 0)
-      this.authService.SignOut()
-
     }, 1000);
 
+  }
+  logOut(){
+    this.authService.SignOut()
   }
 
   getWeather(lat:any,lng:any){

@@ -1,8 +1,9 @@
 import { AuthService } from './../shared/services/auth/auth.service';
 import { ActivatedRoute, Router, } from '@angular/router';
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, ViewChild, } from '@angular/core';
 import {
   FormBuilder,
+  NgForm,
   Validators,
 } from '@angular/forms';
 import { moveIcon } from './animations/move-icons';
@@ -14,9 +15,9 @@ import { turnYellow } from './animations/turn-yellow';
   styleUrls: ['./login.component.scss'],
   animations: [moveIcon, turnYellow],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   isFull = false;
-  isValid = true;
+  isValid = true; //should be true but changes to false when the form is created
 
   public loginForm = this.fb.group({
     userName: ['', Validators.required],
@@ -27,26 +28,23 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if(this.loginForm.valid)
-    this.authService.SignIn(this.loginForm.get('userName')?.value as string, this.loginForm.get('password')?.value as string)
+    this.login(this.loginForm.get('userName')?.value as string, this.loginForm.get('password')?.value as string)
     //this.router.navigate(['home'])
   }
 
-  ngOnInit(): void {
-    console.log(JSON.parse(localStorage.getItem('user') as string))
+  login(un:string,pw:string){
+    this.authService.SignIn(un,pw)
   }
-
   anim() {
-
     if ((this.loginForm.value.userName || this.loginForm.value.password)) {
-      this.isFull = true;
+      return true;
     } else {
-      this.isFull = false;
+      return false;
     }
   }
 
   validate(){
     if(this.loginForm.touched)
     this.isValid = this.loginForm.valid
-
   }
 }

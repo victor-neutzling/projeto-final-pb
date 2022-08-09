@@ -14,7 +14,7 @@ import { hasLowerCase, hasNumber, hasSpecialCharacters, hasUpperCase } from '../
   styleUrls: ['./register.component.scss'],
   animations: [moveIcon, turnYellow, turnGreen, turnTextGreen],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   public isFull:boolean = false
   public isValid:boolean = true
   public errMessage:string = ''
@@ -51,24 +51,23 @@ export class RegisterComponent implements OnInit {
 
   constructor(private router:Router, private authService:AuthService, private fb: FormBuilder) { }
 
-  ngOnInit(): void {
-  }
-
-
   onSubmit(){
-
     if(this.registerForm.get('password')?.value == this.registerForm.get('confirmPassword')?.value){
       if(this.registerForm.valid){
-        this.authService.SignUp(this.registerForm.get('userName')?.value as string, this.registerForm.get('password')?.value as string)
-
+        this.register(this.registerForm.get('userName')?.value as string, this.registerForm.get('password')?.value as string)
       }
     }
   }
+
+  register(un:string,pw:string){
+    this.authService.SignUp(un,pw)
+  }
+
   anim() {
     if ((this.registerForm.value.userName || this.registerForm.value.password || this.registerForm.value.confirmPassword)) {
-      this.isFull = true;
+      return true;
     } else {
-      this.isFull = false;
+      return false;
     }
   }
   validate(){
