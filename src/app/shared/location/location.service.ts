@@ -18,6 +18,7 @@ export class LocationService {
 
   }
   public callApi(lat:any,lng:any){
+
     return this.http.get(`http://api.positionstack.com/v1/reverse?access_key=${this.apikey}&query=${lat},${lng}`)
     .pipe(map((data: any) => data.data));
   }

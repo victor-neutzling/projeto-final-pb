@@ -2,7 +2,7 @@ import { AuthService } from './../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { LocationService } from './../shared/location/location.service';
 import { WeatherService } from './../shared/weather/weather.service';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, delay } from 'rxjs';
 import { Day, Month } from '../shared/enums/date.enum'
 
@@ -47,6 +47,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
       this.time = `${hours}:${mins}`
 
+      //timer
+      if(this.internalTimer == 0){
+        this.logOut()
+      }
+      this.internalTimer--
+      this.timer = this.internalTimer
+
     }, 1000);
 
     this.locationService.getCurrentLocation().then((res:any)=>{
@@ -62,35 +69,20 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getWeather('-23.5489','-46.6388');
     })
 
-    this.startTimer(60)
+    //this.startTimer()
   }
 
   ngOnDestroy(): void {
     clearInterval(this.intervalId);
     clearInterval(this.intervalId2);
   }
-  startTimer(time:number){
-    this.internalTimer = time;
-    this.intervalId = setInterval(() => {
-      this.logOut()
-      if(this.internalTimer == 0)
-
-      this.internalTimer--
-      this.timer = this.internalTimer
-    }, 1000);
-
-  }
   logOut(){
     this.authService.SignOut()
   }
-
   getWeather(lat:any,lng:any){
     this.weatherService.callApi(lat,lng).subscribe((res:any)=>{
       this.temperature = Math.round(res.temp)+'º'
     })
-  }
-  logout(){
-    this.authService.SignOut()
   }
   gotoGoogle(){
     window.location.href = 'https://www.google.com/'
