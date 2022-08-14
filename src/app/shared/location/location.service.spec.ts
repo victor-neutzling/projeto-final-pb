@@ -23,9 +23,7 @@ describe('LocationService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  // it("should have 'b5846476df1478d322df84e6a0c1e7a0' as apiKey", ()=>{
-  //   expect(service.apiKey())
-  // })
+
   it('should return coordinates when called and error when user denies geolocation',(done)=>{
     service.getCurrentLocation().then((res:any)=>{
       //console.log(res)
