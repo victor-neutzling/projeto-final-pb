@@ -24,9 +24,10 @@ npm install
 
 ## usage
 
- - Development build
-To start a development build, open a console window on the directory of the project and run:
-```
-npm run start
-```
-you can then access it on the browser through http://localhost:4200
+ - Development build:
+
+    To start a development build, open a console window on the directory of the project and run:
+    ```
+    npm run start
+    ```
+    you can then access it on the browser through http://localhost:4200
