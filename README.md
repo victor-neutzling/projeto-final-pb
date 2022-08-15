@@ -22,7 +22,7 @@ To install other dependencies open a terminal window on the project directory an
 npm install
 ```
 
-## usage
+## Usage
 
  - Development build:
 
@@ -31,3 +31,11 @@ npm install
     npm run start
     ```
     you can then access it on the browser through http://localhost:4200
+    
+- Production build:
+
+    To compile a production-ready build, open a console window on the directory of the project and run:
+    ```
+    npm run build
+    ```
+    you can then access it on the browser through http://localhost:8081
