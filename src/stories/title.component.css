@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Mark Pro';
+  src: url("./assets/fonts/Mark\ Pro.ttf") format("truetype");
+
+}
+h1{
+  color: #e0e0e0;
+  font-size: 60px;
+  line-height: 76px;
+  font-weight: 400;
+  font-family: 'Mark Pro';
+}

@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Mark Pro';
+  src: url("./assets/fonts/Mark\ Pro.ttf") format("truetype");
+
+}
+input{
+
+  padding: 20px;
+
+  background-color: #26292c;
+  border: 1px solid #FFFFFF;
+  border-radius: 50px;
+  font: 16px;
+  color: #e0e0e0;
+  font-family: 'Mark Pro';
+  width: 337px;
+}

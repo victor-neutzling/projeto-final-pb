@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Mark Pro';
+  src: url("./assets/fonts/Mark\ Pro.ttf") format("truetype");
+
+}
+.submit-button{
+
+  padding: 20px;
+  background: linear-gradient(to right, #FF2D04,#C13216);
+  box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  text-align: center;
+  color: #e0e0e0;
+  font-family: 'Mark Pro';
+  width: 379px;
+  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));
+  cursor: pointer;
+}
