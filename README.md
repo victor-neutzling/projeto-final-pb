@@ -1,6 +1,6 @@
 # ProjetoFinalPb
 
-This project is being made as a conclusion to my Angular internship. it serves as a way to expand and test my knowledge of the Angular framework and several other areas of front-end development, such as:
+This project is being built as a conclusion to an internship that focuses on the Angular framework. its purpose is to serve as a way to expand and test my knowledge of the Angular framework and several other areas of front-end development, such as:
 
   - Storybook;
   - Docker;
@@ -21,3 +21,12 @@ To install other dependencies open a terminal window on the project directory an
 ```
 npm install
 ```
+
+## usage
+
+ - Development build
+To start a development build, open a console window on the directory of the project and run:
+```
+npm run start
+```
+you can then access it on the browser through http://localhost:4200
