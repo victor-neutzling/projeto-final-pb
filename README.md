@@ -1,27 +1,52 @@
-# ProjetoFinalPb
+# ProjetoFinalPb - <img src="https://img.shields.io/github/languages/code-size/victor-neutzling/projeto-final-pb"> <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/victor-neutzling/projeto-final-pb">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.4.
 
-## Development server
+This project is being built as a conclusion to an internship that focuses on the Angular framework. its purpose is to serve as a way to expand and test my knowledge of the Angular framework and several other areas of front-end development, such as:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+  - Storybook;
+  - Docker;
+  - Firebase authentication;
+  - unit testing;
+  - consuming several APIs
 
-## Code scaffolding
+## Dependencies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+to run properly, this project requires the following:
 
-## Build
+  - Node v16.15.0 ([download](https://nodejs.org/dist/v16.16.0/node-v16.16.0-x64.msi))
+  
+  - Angular v14 ([setup guide](https://angular.io/guide/setup-local))
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+To install other dependencies open a terminal window on the project directory and run:
 
-## Running unit tests
+```
+npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage
 
-## Running end-to-end tests
+ - Development build:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    To start a development build, open a console window on the directory of the project and run:
+    ```
+    npm run start
+    ```
+    you can then access it on the browser through http://localhost:4200
+    
+    
+- Production build:
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    To compile a production-ready build, open a console window on the directory of the project and run:
+    ```
+    npm run build
+    ```
+    you can find the compiled build inside the 'dist' folder in the project's root directory
+    
+    
+- Unit tests:
+    
+    To run the unit tests, open a console window on the directory of the project and run:
+    ```
+    npm run test
+    ```
+    it will show the code coverage on the console and automatically open a browser window showing the results of the test
