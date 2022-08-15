@@ -33,6 +33,7 @@ npm install
     ```
     you can then access it on the browser through http://localhost:4200
     
+    
 - Production build:
 
     To compile a production-ready build, open a console window on the directory of the project and run:
@@ -40,6 +41,7 @@ npm install
     npm run build
     ```
     you can find the compiled build inside the 'dist' folder in the project's root directory
+    
     
 - Unit tests:
     
