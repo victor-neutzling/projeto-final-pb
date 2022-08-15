@@ -1,4 +1,4 @@
-# ProjetoFinalPb * https://img.shields.io/github/languages/code-size/victor-neutzling/projeto-final-pb
+# ProjetoFinalPb - <img src="https://img.shields.io/github/languages/code-size/victor-neutzling/projeto-final-pb">
 
 
 This project is being built as a conclusion to an internship that focuses on the Angular framework. its purpose is to serve as a way to expand and test my knowledge of the Angular framework and several other areas of front-end development, such as:
