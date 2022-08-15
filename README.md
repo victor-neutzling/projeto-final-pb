@@ -1,5 +1,6 @@
 # ProjetoFinalPb
 
+
 This project is being built as a conclusion to an internship that focuses on the Angular framework. its purpose is to serve as a way to expand and test my knowledge of the Angular framework and several other areas of front-end development, such as:
 
   - Storybook;
@@ -38,4 +39,12 @@ npm install
     ```
     npm run build
     ```
-    you can then access it on the browser through http://localhost:8081
+    you can find the compiled build inside the 'dist' folder in the project's root directory
+    
+- Unit tests:
+    
+    To run the unit tests, open a console window on the directory of the project and run:
+    ```
+    npm run test
+    ```
+    it will show the code coverage on the console and automatically open a browser window showing the results of the test
