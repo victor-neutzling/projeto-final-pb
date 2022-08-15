@@ -12,6 +12,6 @@ This project is being made as a conclusion to my Angular internship. it serves a
 
 To install other dependencies open a terminal window on the project directory and run:
 
-'''
+```
 npm install
-'''
+```
