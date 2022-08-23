@@ -1,10 +1,11 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-
+import { of } from 'rxjs';
 import { WeatherService } from './weather.service';
 
 describe('WeatherService', () => {
   let service: WeatherService;
+  let httpSpy: jasmine.SpyObj<HttpClient>
 
   beforeEach( async () => {
     await TestBed.configureTestingModule({
@@ -15,14 +16,21 @@ describe('WeatherService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WeatherService);
+    httpSpy = jasmine.createSpyObj('HttpClient', ['get'])
+    service = new WeatherService(httpSpy)
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return Observable object containing location when method callApi is called',()=>{
-    expect(typeof(service.callApi('-23.5489','-46.6388'))).toBe('object')
+  it('should send get request',()=>{
+    httpSpy.get.and.returnValue(of({data: {current:'123'}}))
+    console.log(123)
+    service.callApi('111','111').subscribe({
+        next: data =>{
+        expect(data).not.toBeNull();
+      }
+    })
   })
 });

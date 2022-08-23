@@ -1,24 +1,41 @@
+import { AnimationDriver } from '@angular/animations/browser';
 import { CommonModule } from '@angular/common';
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick, ComponentFixture } from '@angular/core/testing';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ɵassignExtraOptionsToRouter } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UserCredential } from 'firebase/auth';
+import { Observable } from 'rxjs';
+import { of } from 'rxjs';
+
 import { RegisterComponent } from 'src/app/register/register.component';
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from './auth.service';
+import { authState } from '@angular/fire/auth'
 
-let AuthServiceSpy: jasmine.SpyObj<AuthService>
+
 
 describe('AuthService', () => {
   let service: AuthService;
+  let afAuth: AngularFireAuth;
+
   beforeEach(async()=>{
-    const spy = jasmine.createSpyObj('AuthService',['SignIn','SignUp','SignOut'])
+    const mockAngularFireAuth: any = {
+      auth: jasmine.createSpyObj('auth', {
+         'signOut': Promise.reject(),
+         'signInWithEmailAndPassword': Promise.reject(),
+         'createUserWithEmailAndPassword': Promise.reject()
+      }),
+      authState: of(authState)
+    };
+
     await TestBed.configureTestingModule({
       declarations: [ RegisterComponent ],
       imports: [
@@ -29,43 +46,22 @@ describe('AuthService', () => {
         AngularFireStorageModule,
         AngularFireDatabaseModule,
         RouterTestingModule
-
       ],
       providers:[
-        {provide: AuthService, useValue: spy},
-
-
+        { provide: AngularFireAuth, useValue: mockAngularFireAuth },
+        { provide: AuthService, useClass: AuthService }
       ],
     })
   })
+  beforeEach(()=>{
 
-  beforeEach(() => {
+  })
 
-    //TestBed.configureTestingModule({});
-    AuthServiceSpy = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>
-    AuthServiceSpy.SignIn.and.returnValue(new Promise<void>((res)=>{
-      return 'signed in'
-    }))
-    AuthServiceSpy.SignUp.and.returnValue(new Promise<void>((res)=>{
-      return 'signed up'
-    }))
-    AuthServiceSpy.SignOut.and.returnValue(new Promise<void>((res)=>{
-      return 'signed out'
-    }))
-    //service = TestBed.inject(AuthService);
-  });
 
   it('should be created', () => {
-    expect(AuthServiceSpy).toBeTruthy();
-    //console.log(typeof(service.SignIn('aaa@gmail.com','123123')))
+    expect(AuthService).toBeTruthy();
   });
-  it('should return object when signIn is called', () =>{
-    expect(typeof(AuthServiceSpy.SignIn('aaa@gmail.com','123123'))).toBe('object')
-  })
-  it('should return object when signUp is called', () =>{
-    expect(typeof(AuthServiceSpy.SignUp('aaa@gmail.com','123123'))).toBe('object')
-  })
-  it('should return object when signOut is called', () =>{
-    expect(typeof(AuthServiceSpy.SignOut())).toBe('object')
+  it('should do something',()=>{
+
   })
 });

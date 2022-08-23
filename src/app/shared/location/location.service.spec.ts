@@ -1,13 +1,14 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { delay } from 'rxjs';
+import { of } from 'rxjs';
+
 
 import { LocationService } from './location.service';
 
 describe('LocationService', () => {
-
-
   let service: LocationService;
+  let httpSpy: jasmine.SpyObj<HttpClient>
+
   beforeEach( async () => {
     await TestBed.configureTestingModule({
         imports: [HttpClientModule],
@@ -15,8 +16,9 @@ describe('LocationService', () => {
     });
   });
   beforeEach(() => {
+    httpSpy = jasmine.createSpyObj('HttpClient',['get'])
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LocationService);
+    service = new LocationService(httpSpy)
 
   });
 
@@ -35,8 +37,15 @@ describe('LocationService', () => {
     })
   })
 
-  it('should return Observable object containing location when method callApi is called',()=>{
-    expect(typeof(service.callApi('-23.5489','-46.6388'))).toBe('object')
-  })
+  it('should return observable when calling api',()=>{
+    httpSpy.get.and.returnValue(of({data: {current:'123'}}))
+    console.log(123)
+    service.callApi('111','111').subscribe({
+        next: data =>{
+        expect(data).not.toBeNull();
+        }
+      })
+    })
+
 
 });

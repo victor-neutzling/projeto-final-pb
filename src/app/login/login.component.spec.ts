@@ -40,9 +40,7 @@ describe('LoginComponent', () => {
     })
     .compileComponents();
     AuthServiceSpy = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>
-    AuthServiceSpy.SignIn.and.returnValue(new Promise((res)=>{
-      console.log(res)
-    }))
+
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
